@@ -122,6 +122,29 @@ function fIfDef(word)
     ifLine = currLine
 
     -- Search for #else or #endif statements
+    local exists_else = false
+
+    for l = currLine + 1, inLines do
+        if data[l] == "#else" then
+            elseLine = l
+            exists_else = true
+            break
+        elseif data[l] == "#endif" then
+            endifLine = l
+            break
+        end
+        ifStruct[l] = data[l]
+    end
+
+    if exists_else then
+        for l = ifLine + 1, inLines do
+            if data[l] == "#endif" then
+                endifLine = l
+                break
+            end
+            elseStruct[l] = data[l]
+        end
+    end
 
     -- If defined -> remove from #else to #endif
     -- If not defined -> remove from #ifdef to #else
