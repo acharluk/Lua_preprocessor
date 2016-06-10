@@ -32,7 +32,11 @@ function main()
     while currLine < inLines do
         local line = data[currLine]
 
-
+        -- Check if there is a # at start of the line
+        needProcess = line:sub(1, 1) == '#'
+        if needProcess then
+            processLine(line)
+        end
 
         currLine = currLine + 1
     end
@@ -56,3 +60,12 @@ if not ok then
     print(err)
 end
 
+
+--[[ Functions ]]--
+function processLine(line)
+
+end
+
+function fDefine(line, word, definition)
+
+end
