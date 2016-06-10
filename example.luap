@@ -3,6 +3,12 @@
 #define __TABLE__ _G
 #define TEST
 
+#ifdef TEST
+print("This is a test!")
+#else
+print("Else!")
+#endif
+
 for k, _ in pairs(__TABLE__) do
     print(k, __TABLE__[k])
 end

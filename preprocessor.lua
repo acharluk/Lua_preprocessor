@@ -133,7 +133,7 @@ function fIfDef(word)
             endifLine = l
             break
         end
-        ifStruct[l] = data[l]
+        if_data[l] = data[l]
     end
 
     if exists_else then
@@ -142,7 +142,7 @@ function fIfDef(word)
                 endifLine = l
                 break
             end
-            elseStruct[l] = data[l]
+            else_data[l] = data[l]
         end
     end
 
