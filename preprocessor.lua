@@ -17,8 +17,16 @@ function main()
     outFile = io.open(outFile_name, 'w')
 
     --Read all data from input file and close it
-    local inFile_data = inFile:read('*a')
+    local data = {}
+    local inLines = 0
+
+    for line in io.lines(inFile_name) do
+        inLines = inLines + 1
+        data[inLines] = line
+    end
+
     inFile:close()
+
 
 
     --Close output file
