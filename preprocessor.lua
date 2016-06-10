@@ -2,6 +2,8 @@
 -- Author: ACharLuk
 --
 
+require('acharluk_utils')
+
 -- Program arguments
 local tArgs = { ... }
 
@@ -35,7 +37,7 @@ function main()
         -- Check if there is a # at start of the line
         needProcess = line:sub(1, 1) == '#'
         if needProcess then
-            processLine(line)
+            processLine(line, data)
         end
 
         currLine = currLine + 1
@@ -54,18 +56,25 @@ function main()
 
 end
 
+
+--[[ Functions ]]--
+function processLine(line, data)
+    local inst = acl.str_split(line)
+    local func = inst[1]:sub(2)
+
+    if func == "define" then
+        fDefine(data, inst[2], inst[3])
+    end
+end
+
+function fDefine(data, word, definition)
+
+end
+
+
+--[[ Main call ]]--
 local ok, err = pcall(main)
 if not ok then
     print("Something went wrong :(")
     print(err)
-end
-
-
---[[ Functions ]]--
-function processLine(line)
-
-end
-
-function fDefine(line, word, definition)
-
 end
