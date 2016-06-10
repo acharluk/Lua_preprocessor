@@ -38,8 +38,7 @@ function main()
         local line = data[currLine]
 
         -- Check if there is a # at start of the line
-        needProcess = line:sub(1, 1) == '#'
-        if needProcess then
+        if line:sub(1, 1) == '#' then
             processLine(line, data)
         end
 
@@ -148,6 +147,21 @@ function fIfDef(word)
 
     -- If defined -> remove from #else to #endif
     -- If not defined -> remove from #ifdef to #else
+    if is_defined then
+        for l = endifLine, elseLine, -1 do
+            table.remove(data, l)
+            inLines = inLines - 1
+        end
+        table.remove(data, ifLine)
+        inLines = inLines - 1
+    else
+        table.remove(data, endifLine)
+        inLines = inLines - 1
+        for l = elseLine, ifLine, -1 do
+            table.remove(data, l)
+            inLines = inLines - 1
+        end
+    end
 
 end
 
