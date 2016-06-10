@@ -18,8 +18,8 @@ function main()
     inFile = io.open(inFile_name, 'r')
 
     -- Read all data from input file and close it
-    local data = {}
-    local inLines = 0
+    data = {}
+    inLines = 0
 
     for line in io.lines(inFile_name) do
         inLines = inLines + 1
@@ -28,7 +28,7 @@ function main()
 
     inFile:close()
 
-    local currLine = 1
+    currLine = 1
 
     -- Main processing loop
     while currLine < inLines do
@@ -58,17 +58,32 @@ end
 
 
 --[[ Functions ]]--
-function processLine(line, data)
+-- Main processing function
+function processLine(line)
+    -- Separate words into a table
     local inst = acl.str_split(line)
     local func = inst[1]:sub(2)
 
+    -- All preprocessor function calls go here
     if func == "define" then
-        fDefine(data, inst[2], inst[3])
+        fDefine(inst[2], inst[3])
     end
 end
 
-function fDefine(data, word, definition)
 
+-- "#define" function
+function fDefine(word, definition)
+    -- Search and replace all words with the definition
+    for j = 1, inLines do
+        data[j] = string.gsub(data[j], word, definition)
+    end
+
+    -- Remove the preprocessor line from the data
+    table.remove(data, currLine)
+
+    -- Decrement the number of lines and current line
+    inLines = inLines - 1
+    currLine = currLine - 1
 end
 
 
