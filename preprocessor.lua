@@ -70,6 +70,8 @@ function processLine(line)
     -- All preprocessor function calls go here
     if func == "define" then
         fDefine(inst[2], inst[3])
+    elseif func == "ifdef" then
+        fIfDef(inst[2])
     end
 end
 
@@ -93,6 +95,11 @@ function fDefine(word, definition)
     -- Add define to the list
     n_defs = n_defs + 1
     def_list[n_defs] = word
+end
+
+--#ifdef #else #endif function
+function fIfDef(word)
+
 end
 
 
