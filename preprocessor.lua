@@ -14,6 +14,9 @@ local inFile, outFile
 
 function main()
 
+    n_defs = 0
+    def_list = {}
+
     -- Open input file
     inFile = io.open(inFile_name, 'r')
 
@@ -73,9 +76,11 @@ end
 
 -- "#define" function
 function fDefine(word, definition)
-    -- Search and replace all words with the definition
-    for j = 1, inLines do
-        data[j] = string.gsub(data[j], word, definition)
+    if definition ~= nil then
+        -- Search and replace all words with the definition
+        for j = 1, inLines do
+            data[j] = string.gsub(data[j], word, definition)
+        end
     end
 
     -- Remove the preprocessor line from the data
@@ -84,6 +89,10 @@ function fDefine(word, definition)
     -- Decrement the number of lines and current line
     inLines = inLines - 1
     currLine = currLine - 1
+
+    -- Add define to the list
+    n_defs = n_defs + 1
+    def_list[n_defs] = word
 end
 
 
