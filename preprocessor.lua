@@ -108,6 +108,19 @@ function fIfDef(word)
         end
     end
 
+    -- Data between #ifdef and #else or #endif
+    local if_data = {}
+
+    -- Data betewwn #else and #endif (may be nil)
+    local else_data = {}
+
+    -- Lines where #ifdef, #else and #endif
+    -- are in data table
+    local ifLine, elseLine, endifLine
+
+    -- Set start point on the current line
+    ifLine = currLine
+
     -- Search for #else or #endif statements
 
     -- If defined -> remove from #else to #endif
