@@ -2,21 +2,20 @@
 -- Author: ACharLuk
 --
 
---Program arguments
+-- Program arguments
 local tArgs = { ... }
 
---File names
+-- File names
 local inFile_name, outFile_name = tArgs[1], tArgs[2]
 
 local inFile, outFile
 
 function main()
 
-    --Open out files
+    -- Open input file
     inFile = io.open(inFile_name, 'r')
-    outFile = io.open(outFile_name, 'w')
 
-    --Read all data from input file and close it
+    -- Read all data from input file and close it
     local data = {}
     local inLines = 0
 
@@ -27,9 +26,26 @@ function main()
 
     inFile:close()
 
+    local currLine = 1
+
+    -- Main processing loop
+    while currLine < inLines do
+        local line = data[currLine]
 
 
-    --Close output file
+
+        currLine = currLine + 1
+    end
+
+    -- Open output file
+    outFile = io.open(outFile_name, 'w')
+
+    -- Write processed data to output file
+    for _, v in pairs(data) do
+        outFile:write(v .. '\n')
+    end
+
+    -- Close output file
     outFile:close()
 
 end
