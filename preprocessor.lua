@@ -100,6 +100,19 @@ end
 --#ifdef #else #endif function
 function fIfDef(word)
 
+    -- Check if word is already defined
+    local is_defined = false
+    for _, v in pairs(def_list) do
+        if v == word then
+            is_defined = true
+        end
+    end
+
+    -- Search for #else or #endif statements
+
+    -- If defined -> remove from #else to #endif
+    -- If not defined -> remove from #ifdef to #else
+
 end
 
 
