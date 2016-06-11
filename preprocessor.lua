@@ -157,7 +157,7 @@ function fIfDef(word)
     else
         table.remove(data, endifLine)
         inLines = inLines - 1
-        for l = elseLine, ifLine, -1 do
+        for l = elseLine or endifLine, ifLine, -1 do
             table.remove(data, l)
             inLines = inLines - 1
         end
