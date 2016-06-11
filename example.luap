@@ -1,5 +1,7 @@
 -- Example of a file before it has been processed
 -- *.luap means it is a not processed lua file
+#include example.luah
+
 #define __TABLE__ _G
 #define TEST
 
@@ -14,5 +16,5 @@ print("Never gonna print this!")
 #endif
 
 for k, _ in pairs(__TABLE__) do
-    print(k, __TABLE__[k])
+    write_to_screen(k, __TABLE__[k])
 end

@@ -1,0 +1,5 @@
+-- Example file for lua includes
+
+function write_to_screen(...)
+    print(...)
+end

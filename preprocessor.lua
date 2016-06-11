@@ -71,11 +71,13 @@ function processLine(line)
         fDefine(inst[2], inst[3])
     elseif func == "ifdef" then
         fIfDef(inst[2])
+    elseif func == "include" then
+        fInclude(inst[2])
     end
 end
 
 
--- "#define" function
+-- #define function
 function fDefine(word, definition)
     if definition ~= nil then
         -- Search and replace all words with the definition
@@ -96,7 +98,7 @@ function fDefine(word, definition)
     def_list[n_defs] = word
 end
 
---#ifdef #else #endif function
+-- #ifdef #else #endif function
 function fIfDef(word)
 
     -- Check if word is already defined
@@ -158,6 +160,16 @@ function fIfDef(word)
         end
     end
 
+end
+
+-- #include function
+function fInclude(file_name)
+    -- Add all include file data in the data table
+    data, nl = acl.insert_table_at(data, currLine, acl.file_to_table(file_name))
+
+    -- Remove the #include line
+    table.remove(data, currLine)
+    inLines = nl - 1
 end
 
 
