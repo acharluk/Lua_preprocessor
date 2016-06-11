@@ -9,6 +9,10 @@ print("This is a test!")
 print("Else!")
 #endif
 
+#ifdef THIS_IS_NOT_DEFINED
+print("Never gonna print this!")
+#endif
+
 for k, _ in pairs(__TABLE__) do
     print(k, __TABLE__[k])
 end
