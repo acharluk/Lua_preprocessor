@@ -12,3 +12,12 @@ function acl.str_split(str, reg)
 
     return spl
 end
+
+function acl.search_tab(tab, word)
+    for _, v in pairs(tab) do
+       if v == word then
+           return true
+       end
+    end
+    return false
+end

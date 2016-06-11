@@ -100,17 +100,12 @@ end
 function fIfDef(word)
 
     -- Check if word is already defined
-    local is_defined = false
-    for _, v in pairs(def_list) do
-        if v == word then
-            is_defined = true
-        end
-    end
+    local is_defined = acl.search_tab(def_list, word)
 
     -- Data between #ifdef and #else or #endif
     local if_data = {}
 
-    -- Data betewwn #else and #endif (may be nil)
+    -- Data between #else and #endif (may be nil)
     local else_data = {}
 
     -- Lines where #ifdef, #else and #endif
