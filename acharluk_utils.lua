@@ -37,5 +37,5 @@ function acl.insert_table_at(main_table, index, secondary_table)
     for i = 1, #secondary_table do
         table.insert(main_table, i + index, secondary_table[i])
     end
-    return main_table, #secondary_table
+    return main_table, #main_table
 end
