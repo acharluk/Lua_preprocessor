@@ -3,3 +3,9 @@
 function write_to_screen(...)
     print(...)
 end
+
+#ifndef DEBUG
+print("Debug is not defined!")
+#else
+print("Debug is defined!")
+#endif

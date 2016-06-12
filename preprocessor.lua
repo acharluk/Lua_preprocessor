@@ -70,7 +70,9 @@ function processLine(line)
     if func == "define" then
         fDefine(inst[2], inst[3])
     elseif func == "ifdef" then
-        fIfDef(inst[2])
+        fIfDef(inst[2], false)
+    elseif func == "ifndef" then
+        fIfDef(inst[2], true)
     elseif func == "include" then
         fInclude(inst[2])
     end
@@ -99,10 +101,13 @@ function fDefine(word, definition)
 end
 
 -- #ifdef #else #endif function
-function fIfDef(word)
+function fIfDef(word, inverted)
 
     -- Check if word is already defined
     local is_defined = acl.search_tab(def_list, word)
+    if inverted then
+       is_defined = not is_defined
+    end
 
     -- Data between #ifdef and #else or #endif
     local if_data = {}
